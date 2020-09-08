@@ -1,0 +1,6 @@
+public interface Machine {
+    // print function will print information overridden in the class 
+    // that implements the interface Machine.
+    public void print();
+
+}
