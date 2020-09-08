@@ -1,0 +1,50 @@
+import java.util.*;
+import java.math.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.stream.Stream;
+
+public class ParkingLotProjectMain{
+    public static void main(String[] args){
+    
+    // Create parking lot object and print information about the parking lot.
+    ParkingLot parkingLot = new ParkingLot("NYC ","65-30 Kissena Blvd, Flushing, NY 11367");
+    System.out.println(parkingLot.toString());
+    
+  
+    // Using Polymorphism -> Create different types of vehicle objects.
+    Vehicle car = new Car("0719ZYW", 2.0, false, false, true);
+    Vehicle motorcycle = new Motorcycle("123WAZ5", 2.5, false, false, true);
+    Vehicle handicap = new HandicapCar("1117ZMH", 1.5, true, false, false);
+    Vehicle truck = new Truck("782EL3D", 1.0, false, true, false);
+    Vehicle car2 = new Car("382HS9R", 1.5, false, false, true);
+    Vehicle motorcycle2 = new Motorcycle("39DJE68", .5, false, false, true);
+    Vehicle handicap2 = new HandicapCar("I439DP2", 3.0, true, false, false);
+    Vehicle truck2 = new Truck("02JEC2Q", 3.2, false, true, false);
+    
+    
+    // Adds and assigns vehicles to the parking lot.
+    parkingLot.AssignSpot(car);
+    parkingLot.AssignSpot(motorcycle);
+    parkingLot.AssignSpot(handicap);
+    parkingLot.AssignSpot(truck);
+    parkingLot.AssignSpot(car2);
+    parkingLot.AssignSpot(motorcycle2);
+    parkingLot.AssignSpot(handicap2);
+    parkingLot.AssignSpot(truck2);
+    
+    
+    // Vehicle exits the parking lot.
+    parkingLot.VehicleExiting(car);
+    parkingLot.VehicleExiting(motorcycle);
+    parkingLot.VehicleExiting(handicap);
+    parkingLot.VehicleExiting(truck);
+    parkingLot.VehicleExiting(car2);
+    parkingLot.VehicleExiting(motorcycle2);
+    parkingLot.VehicleExiting(handicap2);
+    parkingLot.VehicleExiting(truck2);
+   
+ 
+      
+    
+    }
