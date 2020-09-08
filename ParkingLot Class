@@ -1,0 +1,157 @@
+import java.util.*;
+
+
+public class ParkingLot {
+    private String name;
+    private String address;
+    private ParkingTicket ticket;
+    private int totalTruckSpot = 100;
+    private int totalRegularSpot = 100;
+    private int totalHandicapSpot = 100;
+   
+    // Create machine objects.
+    private EntranceMachine entryMachine = new EntranceMachine();
+    private ExitMachine exitMachine = new ExitMachine();
+    
+            
+    private List<Vehicle> HandicapVehicles= new ArrayList<Vehicle>(); // Declare list to store handicap vehicles.
+    private List<Vehicle> RegularVehicles= new ArrayList<Vehicle>(); // Declare list to store regular(cars and motorcycles) vehicles.
+    private List<Vehicle> TruckVehicles= new ArrayList<Vehicle>(); // Declare list to store truck vehicles.
+    
+    // No-args constructor -> Creates a parking lot
+    public ParkingLot(){
+        this.name = " ";
+        this.address = " ";
+    }
+    
+    // 2 args constructor -> Recieves a name and address and assign it to the field.
+    public ParkingLot(String name, String address){
+        this.name = name;
+        this.address = address;
+        this.entryMachine.setLot(this);
+    }
+    
+    // Setters to set the name and address for the parking lot.
+    public void setParkingLotName(String name){
+        this.name = name;
+    }
+    
+    public void setParkingLotAddress(String address){
+        this.address = address;
+    }
+    
+    // Getters to return name and address of the parking lot.
+    public String getParkingLotName(){
+        return name;
+    }
+    
+    public String getParkingLotAddress(){
+        return address;
+    }
+    
+    // Overriding the toString function and will return 
+    // information of the parking lot -> name and address.
+    public String toString(){
+        String str = "Welcome to " + name + "Parking Lot!\n";
+        str = str.concat("Address: " + address);
+        return str; 
+    }
+    
+    
+    // Assign vehicles to their corresponding slots (adding it to list).
+    // Decrement spots when add vehicles. Let user know if full.
+    // Call sorting methods to sort data.
+    public void AssignSpot(Vehicle vehicle){
+        if(vehicle.isTruck() && totalTruckSpot > 0){
+            TruckVehicles.add(vehicle);
+            totalTruckSpot--;
+            sortTruck();
+        }
+        else if(vehicle.isHandicap() && totalHandicapSpot > 0){
+            HandicapVehicles.add(vehicle);
+            totalHandicapSpot--;
+            sortHandicap();
+        }
+        else if(totalRegularSpot > 0){
+            RegularVehicles.add(vehicle);
+            totalRegularSpot--;
+            sortRegularVehicles();
+        }
+        else{
+            System.out.println("Sorry, the parking lot is currently full.");
+        }
+        entryMachine.assignTicket(vehicle); // Assign tickets to vehicles at the entrance machine.
+        entryMachine.print(); // Print tickets at entrance machine.
+    }       
+    
+    // Removes vehicles
+    public void VehicleExiting(Vehicle vehicle){
+        if(vehicle.isTruck()){
+            removeTrucks(vehicle);
+            totalTruckSpot++;
+        }
+        else if(vehicle.isHandicap()){
+            totalHandicapSpot++;
+            removeHandicap(vehicle);
+        }
+        else{
+            totalRegularSpot++;
+            removeRegularVehicles(vehicle);
+        }
+        exitMachine.getFine(vehicle);  // Calculates the fine amount.
+        exitMachine.print(); // Print receipt.
+    }
+    
+    // Use the iterator to run through the array list and remove the 
+    // wanted regular(car or motorcycle vehicle from the current spot.
+    public void removeRegularVehicles(Vehicle vehicle){
+        Iterator it = RegularVehicles.iterator();
+        while(it.hasNext())
+            if(vehicle.equals(it)){
+                RegularVehicles.remove(it);
+            }
+    }
+    
+    // Use the iterator to run through the array list and 
+    // remove the wanted truck vehicle from the current spot.
+    public void removeTrucks(Vehicle vehicle){
+        Iterator it = TruckVehicles.iterator();
+        while(it.hasNext())
+            if(vehicle.equals(it)){
+                TruckVehicles.remove(it);
+            }
+    }
+    
+    // Use the iterator to run through the array list and 
+    // remove the wanted handicap vehicle from the current spot.
+    public void removeHandicap(Vehicle vehicle){
+        Iterator it = HandicapVehicles.iterator();
+        while(it.hasNext())
+            if(vehicle.equals(it)){
+                HandicapVehicles.remove(it);
+            }
+        
+    }
+    // Sort truck vehicles.
+    public void sortTruck(){
+        TruckVehicles
+            // Convert array list TruckVehicles to stream -> want to access stream methods to sort data.
+            .stream() 
+            .sorted();   
+    }
+    // Sort regular (car and motorcycles) vehicles.
+    public void sortRegularVehicles(){
+        RegularVehicles
+            // Convert array list RegularVehicles to stream -> want to access stream methods to sort data.
+            .stream() 
+            .sorted();
+    }
+    // Sort handicap vehicles.
+    public void sortHandicap(){
+        HandicapVehicles
+            // Convert array list HandicapVehicles to stream -> want to access stream methods to sort data.
+            .stream() 
+            .sorted();
+    }
+    
+}
