@@ -1,0 +1,78 @@
+import java.util.*;
+
+public class Vehicle implements Comparable <Vehicle> {
+    private String licensePlate; // Each car has a license plate -> Will be used as an ID to identify the vehicle.
+    protected ParkingTicket ticket; // Each car will get a parking receipt/ticket at the entrance and pay at exit.
+    private boolean isHandicap, isRegular, isTruck;
+    private double hours;
+    
+    // No-args constructor -> Create a vehicle object        
+    public Vehicle(){
+        this.licensePlate = null;
+        this.ticket = null;
+        
+    }
+    
+    // 2 argument constructor -> Create a vehicle object
+    public Vehicle(String licensePlate, double hours){
+        this.licensePlate = licensePlate;
+        this.hours = hours;
+       
+    }
+    
+    // 3 argument constructor -> Create a vehicle object
+    public Vehicle(String licensePlate, double hours, Boolean isHandicap, Boolean isTruck, Boolean isRegular){
+        this.licensePlate = licensePlate;
+        this.hours = hours;
+        this.isHandicap = isHandicap;
+        this.isTruck = isTruck;
+        this.isRegular = isRegular;
+    }
+    
+    // Setters and getters -> to set and get infomation of the vehicle.
+    public void setLicensePlate(String licensePlate){
+        this.licensePlate = licensePlate;
+    }
+    
+    public String getLicensePlate(){
+        return this.licensePlate;
+    }
+    
+    public double getHours(){
+        return this.hours;
+    }
+    
+    // Assgin a parking ticket to the vehicle.
+    public void assignTicket(ParkingTicket ticket){
+        this.ticket = ticket;
+    }
+    
+    public boolean isEqual(Vehicle v){
+        if(this.licensePlate.equals(v.getLicensePlate()))
+            return true; // same
+        else{
+            return false; // different
+        }
+    }
+    // Compares vehicles licensePlate.
+    public int compareTo(Vehicle vehicle){
+        return vehicle.licensePlate.compareToIgnoreCase(licensePlate);
+    }
+    
+    // 3 boolean fucntions to help determine the car types:
+    // isHandicap function check to see if the vehicle is a handicap car.
+    public boolean isHandicap(){
+        return isHandicap;
+    }
+    
+    // isRegular function check to see if the vehicle is a car or motorcycle.
+    public boolean isRegular(){
+        return isRegular;
+    }
+    
+    // isTruck function check to see if the vehicle is a truck.
+    public boolean isTruck(){
+        return isTruck;
+    }
+    
+}
