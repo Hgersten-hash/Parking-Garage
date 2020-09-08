@@ -1,0 +1,16 @@
+import java.util.*;
+import java.math.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.stream.Stream;
+
+public class Motorcycle extends Vehicle {
+    
+    // No-args constructor -> Create a default motorcycle.
+    public Motorcycle(String licensePlate, double hours, Boolean isHandicap, Boolean isTruck, Boolean isRegular){
+        super(licensePlate, hours, isHandicap, isTruck, isRegular); // Call parent Vehicle.
+    }
+    
+    
+}
+
