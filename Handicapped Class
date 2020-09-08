@@ -1,0 +1,8 @@
+public class HandicapCar extends Vehicle{
+    
+    // No-args constructor -> Create a default car.
+    public HandicapCar(String licensePlate, double hours, Boolean isHandicap, Boolean isTruck, Boolean isRegular){
+        super(licensePlate, hours, isHandicap, isTruck, isRegular); // Call parent Vehicle.
+    }
+    
+}
