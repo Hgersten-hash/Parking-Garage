@@ -1,0 +1,52 @@
+import java.util.Date;
+
+public class ParkingTicket {
+    private int ticketNumber; // Each ticket has an ticket number.
+    private String ticketIssued; // When the ticket was issued or printed from the entranceMachine.
+    private Double hours; // Track the parking duration in the parking lot.
+    
+    
+    // Regular constructor -> create a parking ticket object.
+    public ParkingTicket(int ticketNumber, Double balanceTotal, String ticketIssued,
+                        Boolean ticketPayed, Double hours){
+        this.ticketNumber = ticketNumber;
+        this.ticketIssued = ticketIssued;
+        this.hours = hours;
+    }
+    public ParkingTicket(int ticketNumber, String ticketIssued, Boolean ticketPayed, double hours){
+        this.ticketNumber = ticketNumber;
+        this.ticketIssued = ticketIssued;
+        this.hours = hours;
+    }
+    // Copy constructor -> takes in a Parking ticket and copy it.
+    // This constructor is designed to reprint lost unpaid tickets 
+    public ParkingTicket(ParkingTicket ticket){
+        this.ticketNumber = ticket.ticketNumber;
+        this.ticketIssued = ticket.ticketIssued;
+        this.hours = ticket.hours;
+    }
+    
+    // Setters 
+    public void setTicketNumber(int ticketNumber){
+        this.ticketNumber = ticketNumber;
+    }
+    public void setIssuedDate(Date tickIssued){
+        this.ticketIssued = ticketIssued;
+    }
+    public void setHoursParked(Double hours){
+        this.hours = hours;
+    }
+    
+    // Getters
+    public int getTicketNumber(){
+        return ticketNumber;
+    }
+    public String getTicketIssued(){
+        return ticketIssued;
+    }
+    public Double getHoursParked(){
+        return hours;
+    }
+    
+    
+}
