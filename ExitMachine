@@ -1,0 +1,13 @@
+public class ExitMachine implements Machine{
+    private double fineAmount;
+    
+    // getFine function calculates the total parking cost -> $15 per hour.
+    public void getFine(Vehicle vehicle){
+        fineAmount = vehicle.getHours() * 15;
+    }
+    
+    // void print function output amount paid.
+    public void print(){
+        System.out.println("Amount Paid: " + fineAmount + "\nHave a wonderful day!");
+    }
+}
