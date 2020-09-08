@@ -1,0 +1,14 @@
+import java.util.*;
+import java.math.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.stream.Stream;
+
+public class Truck extends Vehicle{
+   
+    // No-args constructor -> Create a default truck.
+    public Truck(String licensePlate, double hours, Boolean isHandicap, Boolean isTruck, Boolean isRegular){
+        super(licensePlate, hours, isHandicap, isTruck, isRegular); // Call parent Vehicle.
+    }
+    
+}
