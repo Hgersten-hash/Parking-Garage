@@ -1,0 +1,26 @@
+public class EntranceMachine implements Machine{
+    private ParkingLot lot;
+    private static int ticketCounter = 0;
+    
+    // Setter and getters.
+    public void setLot(ParkingLot lot){
+        this.lot = lot;
+    }
+    
+    public ParkingLot getLot(){
+        return lot;
+    }
+            
+    // Assgin a parking ticket to the vehicle.
+    public void assignTicket(Vehicle vehicle){
+        ParkingTicket ticket = new ParkingTicket(ticketCounter, 
+        java.time.LocalDateTime.now().toString(), false, vehicle.getHours());
+        vehicle.assignTicket(ticket);
+    }
+    
+    // Print ticket at entrance machine for cars that enter.
+    public void print(){
+        System.out.println("Welcome to " + lot.getParkingLotName() + "Parking Lot");
+        System.out.println("Date: " + java.time.LocalDateTime.now().toString());
+    }
+}
